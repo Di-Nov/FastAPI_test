@@ -5,6 +5,9 @@ from views.users import get_all_users
 from sqlalchemy.orm import Session
 from model.database import get_db
 from model import schemas
+from http import HTTPStatus
+from controllers.users import register
+
 
 router = APIRouter()
 
@@ -18,3 +21,9 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 @router.get('/{user_id}')
 def read_user(user_id: int):
     return {'user_id': user_id, 'name': 'first'}
+
+
+@router.post('/create_user', response_model=schemas.LiteUser, status_code=HTTPStatus.CREATED)
+def create_user(user_data: schemas.UserCreate, db: Session = Depends(get_db)):
+    return register(user_data, db)
+

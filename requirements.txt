@@ -60,6 +60,8 @@ mdurl==0.1.2
     # via markdown-it-py
 orjson==3.10.3
     # via fastapi
+passlib==1.7.4
+    # via -r requirements.in
 psycopg2==2.9.9
     # via -r requirements.in
 pydantic==2.7.3

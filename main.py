@@ -1,4 +1,4 @@
-from typing import Union
+import uvicorn
 
 import model.core
 from model import core
@@ -21,3 +21,6 @@ app.include_router(
     router=users_router,
     prefix='/users',
 )
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="localhost", port=8000, reload=True)

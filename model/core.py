@@ -16,6 +16,15 @@ class User(Base):
     items = relationship("Item", back_populates="owner")
 
 
+class Token(Base):
+    __tablename__ = "token"
+
+    id = Column(Integer, primary_key=True)
+    access_token = Column(String, unique=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+
+    user = relationship("User", back_populates="tokens")
+
 class Item(Base):
     __tablename__ = "items"
 
