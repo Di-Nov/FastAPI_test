@@ -1,7 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends
-from controllers.users import get_all_users
+from views.users import get_all_users
 from sqlalchemy.orm import Session
 from model.database import get_db
 from model import schemas
