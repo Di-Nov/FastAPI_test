@@ -54,6 +54,8 @@ mdurl==0.1.2
     # via markdown-it-py
 orjson==3.10.3
     # via fastapi
+psycopg2==2.9.9
+    # via -r requirements.in
 pydantic==2.7.3
     # via fastapi
 pydantic-core==2.18.4
