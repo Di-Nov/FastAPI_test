@@ -14,7 +14,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     items = relationship("Item", back_populates="owner")
-
+    tokens = relationship("Token", back_populates="user")
 
 class Token(Base):
     __tablename__ = "token"

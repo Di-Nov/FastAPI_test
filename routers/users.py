@@ -1,13 +1,13 @@
-from typing import List
+from typing import List, Annotated
 
 from fastapi import APIRouter, Depends
-from views.users import get_all_users
+from views.users import get_all_users, get_authorization_by_token
 from sqlalchemy.orm import Session
 from model.database import get_db
 from model import schemas
 from http import HTTPStatus
 from controllers.users import register
-
+import secure
 
 router = APIRouter()
 
@@ -27,3 +27,7 @@ def read_user(user_id: int):
 def create_user(user_data: schemas.UserCreate, db: Session = Depends(get_db)):
     return register(user_data, db)
 
+
+@router.post('/self', response_model=schemas.LiteUser)
+def get_token_by_authorization(token: Annotated[str, Depends(secure.apikey_scheme)], db: Session = Depends(get_db)):
+    return get_authorization_by_token(access_token=token, db=db)
